@@ -34,7 +34,6 @@ app.get('/exercises', (req, res) => {
 })
 
 app.get('/workout-sessions', (req, res) => {
-    const originalContent = workouts;
     res.statusCode = 200;
     res.json({ ...workouts })
 });
@@ -71,7 +70,7 @@ app.get('/filter-terms', (req, res) => {
     else {
         res.statusCode = 200;
         if (category === 'all') res.json(filterData);
-        else res.json(filterData.filter(obj => obj.key === category));
+        else res.json(filterData.find(obj => obj.key === category));
     }
 })
 

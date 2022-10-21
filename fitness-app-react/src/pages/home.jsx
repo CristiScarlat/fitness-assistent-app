@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getFilterData } from "../services/api";
+import Card from "../components/card/card";
 
 const Home = () => {
   const [filterCategories, setFilterCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getFilterInfo() {
@@ -45,15 +48,9 @@ const Home = () => {
       <h4 className="text-center">
         Lots of exercises that can be filtered by{" "}
       </h4>
-      <div className="d-flex flex-wrap gap-3">
+      <div className="d-flex flex-wrap gap-3 justify-content-center">
         {filterCategories.map((obj) => (
-          <div
-            className="p-4 home-container text-center m-0"
-            style={{ width: "fit-content" }}
-          >
-            <h5>{obj.label}</h5>
-            <img src={obj.gif} alt="..." width="100%"/>
-          </div>
+          <Card label={obj.label} gif={obj.gif} onClick={() => navigate(`/details/${obj.key}`)}/>
         ))}
       </div>
     </>

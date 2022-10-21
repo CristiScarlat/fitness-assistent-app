@@ -8,8 +8,18 @@ const api = axios.create({
     
 })
 
-const getFilterData = () => {
-    return api.get('/filter-terms?category=all');
+const buildParamsFromObj = (obj) => {
+    const arrParams = Object.keys(obj).map(key => `${key}=${obj[key]}`)
+    return `?${arrParams.join('&')}`
 }
 
-export { getFilterData }
+const getExercises = (paramsObj) => {
+    const params =  buildParamsFromObj(paramsObj);
+    return api.get(`/exercises${params}`)
+}
+
+const getFilterData = (category) => {
+    return api.get(`/filter-terms?category=${category || "all"}`);
+}
+
+export { getFilterData, getExercises }

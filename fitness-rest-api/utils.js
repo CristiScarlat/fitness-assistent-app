@@ -3,7 +3,6 @@ const path = require('path');
 
 const filterList = (list, filterTerms) => {
     const tempf = Object.keys(filterTerms).filter(k => filterTerms[k] !== null);
-    console.log(filterTerms, tempf)
     let tempFilteredArray = [...list];
     tempf.forEach(k => {
         tempFilteredArray = tempFilteredArray.filter(obj => obj[k] === filterTerms[k]);

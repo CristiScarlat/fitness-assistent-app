@@ -10698,6 +10698,4 @@ const filterData = [
   }
 ]
 
-const workoutSessions = [];
-
 module.exports = { allExercises, filterData }
