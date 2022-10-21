@@ -4,7 +4,7 @@
   "description": "REST API for serving exercises and data related to fitness",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "frontenders",
