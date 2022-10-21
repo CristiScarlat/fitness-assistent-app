@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getFilterData } from "../services/api";
 import Card from "../components/card/card";
+import "./home";
 
 const Home = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -23,7 +24,7 @@ const Home = () => {
   return (
     <>
       <div className="row fluid p-4 home-container">
-        <div className="col-md-6">
+        <div className="col-md-6 container">
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa
             aspernatur ut alias quidem officiis repudiandae unde earum
@@ -42,6 +43,7 @@ const Home = () => {
             src="http://d205bpvrqc9yn1.cloudfront.net/0015.gif"
             alt="home exercise"
             width="100%"
+            className="image"
           />
         </div>
       </div>
@@ -50,7 +52,12 @@ const Home = () => {
       </h4>
       <div className="d-flex flex-wrap gap-3 justify-content-center">
         {filterCategories.map((obj) => (
-          <Card label={obj.label} gif={obj.gif} onClick={() => navigate(`/details/${obj.key}`)}/>
+          <Card
+            label={obj.label}
+            gif={obj.gif}
+            key={Math.random()}
+            onClick={() => navigate(`/details/${obj.key}`)}
+          />
         ))}
       </div>
     </>

@@ -5,13 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #01276ee3!important;
-  color: white!important;
+  background-color: #1d4e55 !important;
+  color: white !important;
 }
 
 .home-container {
-  border: 1px solid #8080804d;
+  border: 6px solid #8080804d;
   margin: 1rem auto;
   max-width: 70rem;
-  border-radius: 15px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
