@@ -10658,7 +10658,7 @@ const filterData = [
       "upper back"
     ],
     key: "target",
-    label: "Target Muscles",
+    label: "Target Muscle",
     gif: "http://d205bpvrqc9yn1.cloudfront.net/0968.gif"
   },
   {

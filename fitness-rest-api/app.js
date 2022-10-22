@@ -25,7 +25,7 @@ app.get('/exercises', (req, res) => {
     const pageNo = Number(reqObj.pageNo);
     const pageQty = Number(reqObj.pageQty);
     res.statusCode = 200;
-    if (pageNo && pageQty) {
+    if (pageNo !== undefined && pageQty !== undefined) {
         const paginatedList = list.slice(pageQty * pageNo, (pageQty * pageNo) + pageQty);
         res.json({ exercises: paginatedList, count: list.length });
         return
@@ -72,6 +72,33 @@ app.get('/filter-terms', (req, res) => {
         if (category === 'all') res.json(filterData);
         else res.json(filterData.find(obj => obj.key === category));
     }
+})
+
+app.get('/bodyPart', (req, res) => {
+    const bodyParts = filterData[0].data;
+    const arr = bodyParts.map(bp => {
+        return allExercises.find(exercise => exercise.bodyPart === bp)
+    })
+    res.statusCode = 200;
+    res.json(arr);
+})
+
+app.get('/target', (req, res) => {
+    const targetMuscles = filterData[1].data;
+    const arr = targetMuscles.map(tm => {
+        return allExercises.find(exercise => exercise.target === tm)
+    })
+    res.statusCode = 200;
+    res.json(arr);
+})
+
+app.get('/equipment', (req, res) => {
+    const equipments = filterData[2].data;
+    const arr = equipments.map(eq => {
+        return allExercises.find(exercise => exercise.equipment === eq)
+    })
+    res.statusCode = 200;
+    res.json(arr);
 })
 
 app.get('/', (req, res) => {

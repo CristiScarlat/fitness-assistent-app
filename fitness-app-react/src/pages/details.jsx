@@ -1,30 +1,34 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { getFilterData, getExercises } from "../services/api";
+import { useEffect, useState } from "react";
+import { getCategoryValues } from "../services/api";
+import Card from "../components/card/card";
 
 const Details = () => {
-    
-    const params = useParams();
-    
-    useEffect(() => {
-        getFilterData(params.category)
-        .then(res => {
-            const requests = res.data.data.map(value => {
-                return getExercises({
-                    [params.category]: value,
-                    pageNo: 1,
-                    pageQty: 1
-                })
-            });
-            Promise.all(requests).then(res => {
-                console.log(res)
-            })
-        })
-    }, [])
-    
-    return(
-        <div></div>
-    )
-}
+  const [cards, setCards] = useState([]);
+  const params = useParams();
+  const isLogedIn = true;
+
+  useEffect(() => {
+    getCategoryValues(params.category)
+      .then((res) => setCards(res.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  return (
+    <>
+      <h2 className="text-center mb-5">Choose your {params.label}</h2>
+      <div className="grid-container">
+        {cards.length > 0 &&
+          cards.map((card) => (
+            <Card 
+            key={card.id} 
+            label={card[params.category]} 
+            gif={card.gifUrl} 
+            buttonLabel={isLogedIn ? `See all ${card[params.category]} exercises` : `Please Login to see all ${card[params.category]} exercises`}/>
+          ))}
+      </div>
+    </>
+  );
+};
 
 export default Details;

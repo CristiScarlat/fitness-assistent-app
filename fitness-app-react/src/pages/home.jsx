@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="row fluid p-4 home-container">
+      <div className="row fluid p-4 home-container" style={{maxWidth: '70rem'}}>
         <div className="col-md-6">
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa
@@ -50,7 +50,7 @@ const Home = () => {
       </h4>
       <div className="d-flex flex-wrap gap-3 justify-content-center">
         {filterCategories.map((obj) => (
-          <Card label={obj.label} gif={obj.gif} onClick={() => navigate(`/details/${obj.key}`)}/>
+          <Card key={obj.key} label={obj.label} gif={obj.gif} onClick={() => navigate(`/details/${obj.key}/${obj.label}`)}/>
         ))}
       </div>
     </>

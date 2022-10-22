@@ -22,4 +22,8 @@ const getFilterData = (category) => {
     return api.get(`/filter-terms?category=${category || "all"}`);
 }
 
-export { getFilterData, getExercises }
+const getCategoryValues = (category) => {
+    return api.get(`/${category}`);
+}
+
+export { getFilterData, getExercises, getCategoryValues }
