@@ -6,11 +6,14 @@ import Card from "../components/card/card";
 const Details = () => {
   const [cards, setCards] = useState([]);
   const params = useParams();
-  const isLogedIn = true;
+  const isLogedIn = false;
 
   useEffect(() => {
     getCategoryValues(params.category)
-      .then((res) => setCards(res.data))
+      .then((res) => {
+        setCards(res.data);
+        console.log(res.data);
+      })
       .catch((error) => console.log(error));
   }, []);
 

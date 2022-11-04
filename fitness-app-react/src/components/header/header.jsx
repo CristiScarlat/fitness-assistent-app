@@ -1,6 +1,28 @@
 import { Navbar, Container, Offcanvas, Form, Nav, Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { removeUser } from "../../redux/authSlice";
+import {auth, signOut} from "../../firebase/firebase";
 
 const Header = () => {
+
+  const user = useSelector(state => state.auth.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleAuth = () => {
+    if(user && user !== ""){
+      signOut(auth)
+      .then(res => {
+        console.log(res);
+        dispatch(removeUser());
+      })
+      .catch(error => console.log(error))
+    }
+    else {
+      navigate("/login");
+    }
+  }
 
     return(
         <Navbar bg="light" expand="md" className="mb-3">
@@ -13,14 +35,14 @@ const Header = () => {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`} style={{color: 'black'}}>
                   Offcanvas
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Login</Nav.Link>
+                  <Link to="/" style={{color: 'black'}} className="nav-link">Home</Link>
+                  <Button className="nav-link" onClick={handleAuth}>{(user && user !== "") ? "Logout" : "Login"}</Button>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control

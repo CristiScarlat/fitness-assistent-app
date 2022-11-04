@@ -35,7 +35,7 @@ app.get('/exercises', (req, res) => {
 
 app.get('/workout-sessions', (req, res) => {
     res.statusCode = 200;
-    res.json({ ...workouts })
+    res.json({ ...workouts });
 });
 
 app.post('/workout-sessions', jsonParser, (req, res) => {
