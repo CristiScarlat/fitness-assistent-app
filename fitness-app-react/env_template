@@ -1,0 +1,7 @@
+REACT_APP_FIREBASE_API=from-your-firebase-config 
+REACT_APP_FIREBASE_AUTHDOMAIN=from-your-firebase-config 
+REACT_APP_FIREBASE_PRJ_ID=from-your-firebase-config 
+REACT_APP_FIREBASE_STORAGE_BUCKET=from-your-firebase-config 
+REACT_APP_FIREBASE_MESSAGEINGSENDERID=from-your-firebase-config 
+REACT_APP_FIREBASE_APPID=from-your-firebase-config 
+REACT_APP_FIREBASE_MEASURMENTID=from-your-firebase-config 
