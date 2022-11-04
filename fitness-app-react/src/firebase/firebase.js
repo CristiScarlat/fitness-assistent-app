@@ -4,13 +4,13 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCBq7EyP9V4TYFmrXcq_psEpiN_pIxyQp4",
-    authDomain: "cris-web-apps.firebaseapp.com",
-    projectId: "cris-web-apps",
-    storageBucket: "cris-web-apps.appspot.com",
-    messagingSenderId: "358125981958",
-    appId: "1:358125981958:web:7a2168ecefa45825e44e87",
-    measurementId: "G-M00E1FCCQM"
+    apiKey: process.env.REACT_APP_FIREBASE_API,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PRJ_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGEINGSENDERID,
+    appId: process.env.REACT_APP_FIREBASE_APPID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASURMENTID
 }
 
 const app = initializeApp(firebaseConfig);
