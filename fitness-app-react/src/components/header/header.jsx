@@ -42,7 +42,7 @@ const Header = () => {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Link to="/" style={{color: 'black'}} className="nav-link">Home</Link>
-                  <Button className="nav-link" onClick={handleAuth}>{(user && user !== "") ? "Logout" : "Login"}</Button>
+                  <button className="custom-link-button nav-link" onClick={handleAuth}>{(user && user !== "") ? "Logout" : "Login"}</button>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
@@ -51,7 +51,7 @@ const Header = () => {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success">Search</Button>
+                  <Button variant="outline-primary">Search</Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
