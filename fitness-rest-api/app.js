@@ -22,10 +22,10 @@ app.get('/exercises', (req, res) => {
             equipment: reqObj?.equipment || null
         })
     }
-    const pageNo = Number(reqObj.pageNo);
-    const pageQty = Number(reqObj.pageQty);
     res.statusCode = 200;
-    if (pageNo !== undefined && pageQty !== undefined) {
+    if (reqObj.pageNo !== undefined && reqObj.pageQty !== undefined) {
+        const pageNo = Number(reqObj.pageNo);
+        const pageQty = Number(reqObj.pageQty);
         const paginatedList = list.slice(pageQty * pageNo, (pageQty * pageNo) + pageQty);
         res.json({ exercises: paginatedList, count: list.length });
         return
