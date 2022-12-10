@@ -18,9 +18,6 @@ React Js, Redux, bootstrap
 	c.User can choose to see an info card, fixed in the bottom right of the screen.
 	
 
-
-
-
 extra features :
 - Transform web app into PWA.
 - Offline functionality

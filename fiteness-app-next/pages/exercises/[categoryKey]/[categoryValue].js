@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getExercises, getFilterData } from "../services/api";
-import Card from "../components/card/card";
-import SubHeaderFilter from "../components/subHeaderFilter/subHeaderFilter";
+import { getExercises, getFilterData } from "../../../services/api";
+import Card from "../../../components/card";
+import SubHeaderFilter from "../../../components/subHeaderFilter";
+import { useSelector } from "react-redux"
 
 const Exercises = () => {
   const [filters, setFilters] = useState();
   const [exercises, setExercises] = useState([]);
-  const [ selectedFilters, setSelectedFilters ] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState({});
 
+  const user = useSelector(state => state.auth.user)
+  console.log(user)
 
-  const { categoryKey, categoryValue } = useParams();
+  const { query: { categoryKey, categoryValue } } = useRouter();
 
   const fetchExercisesList = async () => {
     const res = await getExercises({
@@ -45,7 +48,7 @@ const Exercises = () => {
 
   useEffect(() => {
     fetchExercisesList()
-    .then(res => setExercises(res))
+      .then(res => setExercises(res))
   }, [selectedFilters])
 
   const handleFillterOnSelect = (key, value) => {
@@ -56,17 +59,17 @@ const Exercises = () => {
   }
 
   return (
-    <div>
-        <div className="filters">
-          <SubHeaderFilter data={filters} onSelect={handleFillterOnSelect}/>
-        </div>
-        <hr/>
-        <div className="exercises-list d-flex flex-wrap gap-2 justify-content-center">
+    (user && user !== "") ? <div>
+      <div className="filters">
+        <SubHeaderFilter data={filters} onSelect={handleFillterOnSelect} />
+      </div>
+      <hr />
+      <div className="exercises-list d-flex flex-wrap gap-2 justify-content-center">
         {exercises?.map((obj) => (
-          <Card key={obj.id} label={obj.name} gif={obj.gifUrl} onClick={() => {}}/>
+          <Card key={obj.id} label={obj.name} gif={obj.gifUrl} onClick={() => { }} />
         ))}
-        </div>
-    </div>
+      </div>
+    </div> : <p className="text-center">Please login to see this page</p>
   );
 };
 
